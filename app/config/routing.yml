@@ -1,0 +1,5 @@
+fantur_fantur:
+    resource: "@FanturFanturBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
