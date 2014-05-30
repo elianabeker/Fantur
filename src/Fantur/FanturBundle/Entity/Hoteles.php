@@ -90,4 +90,8 @@ class Hoteles
     {
         return $this->lugar;
     }
+    
+        public function __toString() {
+        return $this->nombre;
+    }
 }

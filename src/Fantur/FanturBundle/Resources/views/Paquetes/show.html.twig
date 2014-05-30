@@ -1,0 +1,47 @@
+{% extends 'MWSimpleCrudGeneratorBundle::layout.html.twig' %}
+
+{% block title %}
+{{ parent() }} - {{ 'views.show.show'|trans({'%entity%': 'Paquetes'}, 'MWSimpleCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+    
+<div class="well well-lg">
+    <h1>Paquetes</h1>
+    <form class="form-horizontal">
+        <fieldset>                <div class="form-group">
+                    <label class="control-label">Id</label>
+                    <div class="form-control">                        <span class="input-xlarge uneditable-input">{{ entity.id }}</span>                    </div>
+                </div>                <div class="form-group">
+                    <label class="control-label">Fechaida</label>
+                    <div class="form-control">                        <span class="input-xlarge uneditable-input">{{ entity.fechaIda|date('Y-m-d') }}</span>                    </div>
+                </div>                <div class="form-group">
+                    <label class="control-label">Fechavuelta</label>
+                    <div class="form-control">                        <span class="input-xlarge uneditable-input">{{ entity.fechaVuelta|date('Y-m-d') }}</span>                    </div>
+                </div>                <div class="form-group">
+                    <label class="control-label">Precio</label>
+                    <div class="form-control">                        <span class="input-xlarge uneditable-input">{{ entity.precio }}</span>                    </div>
+                </div>                <div class="form-group">
+                    <label class="control-label">Fechaexpiracion</label>
+                    <div class="form-control">                        <span class="input-xlarge uneditable-input">{{ entity.fechaExpiracion|date('Y-m-d') }}</span>                    </div>
+                </div>                <div class="form-group">
+                    <label class="control-label">Transporte</label>
+                    <div class="form-control">                        <span class="input-xlarge uneditable-input">{{ entity.transporte }}</span>                    </div>
+                </div>        </fieldset>
+    </form>
+</div>
+
+        <div class="col-lg-9">
+    <div class="float-left col-lg-3">
+        <a class="btn btn-info col-lg-11" href="{{ path('paquetes') }}">
+            {{ 'views.recordactions.backtothelist'|trans({}, 'MWSimpleCrudGeneratorBundle') }}
+        </a>
+    </div>
+    <div class="float-left col-lg-3">
+        <a class="btn btn-primary col-lg-11" href="{{ path('paquetes_edit', { 'id': entity.id }) }}">
+            {{ 'views.recordactions.edit'|trans({}, 'MWSimpleCrudGeneratorBundle') }}
+        </a>
+    </div>
+    <div class="float-left col-lg-3">{{ form(delete_form) }}</div>
+</div>
+{% endblock %}
