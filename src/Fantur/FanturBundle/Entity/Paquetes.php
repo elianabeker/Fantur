@@ -3,7 +3,7 @@
 namespace Fantur\FanturBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Paquetes
  *
@@ -22,8 +22,8 @@ class Paquetes
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="Destinos")
-     * @ORM\JoinColumn(name="destino_id", referencedColumnName="id")
+     * @Assert\Type("Fantur\FanturBundle\Entity\Destinos")
+     * @Assert\NotNull()
      */
     private $destino;
 

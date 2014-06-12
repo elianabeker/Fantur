@@ -5,6 +5,8 @@ namespace Fantur\FanturBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Fantur\FanturBundle\Form\EventListener\AddDestinoFieldSubscriber;
+use Fantur\FanturBundle\Form\EventListener\AddHotelFieldSubscriber;
 
 /**
  * PaquetesType form.
@@ -18,14 +20,15 @@ class PaquetesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $propertyPathToHotel = 'hotel';
         $builder
             ->add('fechaIda')
             ->add('fechaVuelta')
             ->add('precio')
             ->add('fechaExpiracion')
             ->add('transporte')
-            ->add('destino')
-            ->add('hotel')
+            ->addEventSubscriber(new AddHotelFieldSubscriber($propertyPathToHotel))
+            ->addEventSubscriber(new AddDestinoFieldSubscriber($propertyPathToHotel))
             ->add('eventos')
         ;
     }

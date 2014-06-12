@@ -197,8 +197,22 @@ class PaquetesController extends Controller
             'entity' => $entity,
             'form'   => $form->createView(),
         );
+     }
+     
+     /**
+        * @Route("/selector_hoteles", name="select_hoteles")
+        */
+    public function hotelesAction(Request $request)
+    {
+        $destino_id = $request->request->get('destino_id');
+
+        $em = $this->getDoctrine()->getManager();
+        $hoteles = $em->getRepository('FanturFanturBundle:Hoteles')->findByProvinceId($destino_id);
+
+        return new JsonResponse($hoteles);
     }
 
+    
     /**
      * Finds and displays a Paquetes entity.
      *

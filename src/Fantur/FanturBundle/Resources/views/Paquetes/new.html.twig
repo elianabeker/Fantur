@@ -4,6 +4,34 @@
 {{ parent() }} - {{ 'views.new.creation'|trans({'%entity%': 'Paquetes'}, 'MWSimpleCrudGeneratorBundle') }}
 {% endblock %}
 
+{% block javascript %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/mwsimplecrudgenerator/js/widget.js') }}"></script>
+    
+  <script > 
+    $("#selector_destino").change(function(){
+    var data = {
+        destino_id: $(this).val()
+    };
+ 
+    $.ajax({
+        type: 'post',
+        url: '{{ path("select_hoteles") }}',
+        data: data,
+        success: function(data) {
+            var $hotel_selector = $('#selector_hotel');
+ 
+            $hotel_selector.html('<option>Hotel</option>');
+ 
+            for (var i=0, total = data.length; i < total; i++) {
+                $hotel_selector.append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+            }
+        }
+    });
+});
+    </script>
+{% endblock %}
+
 {% block page %}
     {% form_theme form 'MWSimpleCrudGeneratorBundle:widget:fields.html.twig' %}
     <div class="panel panel-default center-block">
@@ -12,10 +40,18 @@
                 {{ 'views.new.creation'|trans({'%entity%': 'Paquetes'}, 'MWSimpleCrudGeneratorBundle') }}
             </h3>
         </div>
+                 
+        <form action="{{ path('paquetes_create') }}" method="post" {{ form_enctype(form) }}> 
+            {{ form_errors(form) }}
+
+            {{ form_row(form.destino) }}
+            {{ form_row(form.hotel) }}
+            {{ form_row(form.eventos) }}
+
+            {{ form_rest(form) }}
+
+         </form>  
             
-        <div class="panel-body">
-            {{ form(form) }}
-        </div>
     </div>
 
         <div class="col-lg-9">
@@ -27,9 +63,4 @@
 </div>
 {% endblock %}
     
-{% block javascript %}
-    {{ parent() }}
-    <script src="{{ asset('bundles/mwsimplecrudgenerator/js/widget.js') }}"></script>
-    
-    
-{% endblock %}
+

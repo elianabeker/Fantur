@@ -32,7 +32,7 @@ class Hoteles
      * @ORM\ManyToOne(targetEntity="Destinos")
      * @ORM\JoinColumn(name="destino_id", referencedColumnName="id")
      */
-    private $lugar;
+    private $destino;
 
 
     /**
@@ -69,26 +69,26 @@ class Hoteles
     }
 
     /**
-     * Set lugar
+     * Set destino
      *
-     * @param string $lugar
+     * @param string $destino
      * @return Hoteles
      */
-    public function setLugar($lugar)
+    public function setDestino($destino)
     {
-        $this->lugar = $lugar;
+        $this->destino = $destino;
 
         return $this;
     }
 
     /**
-     * Get lugar
+     * Get destino
      *
      * @return string 
      */
-    public function getLugar()
+    public function getDestino()
     {
-        return $this->lugar;
+        return $this->destino;
     }
     
         public function __toString() {
